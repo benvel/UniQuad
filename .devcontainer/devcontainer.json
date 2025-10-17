@@ -1,0 +1,31 @@
+{
+  "name": "UniQuad-dev",
+  "build": {
+    "dockerfile": "Dockerfile"               // uncomment if Dockerfile needs context root
+    // "args": { "SOME_ARG": "value" }  // pass any build args your Dockerfile expects
+  },
+  "workspaceFolder": "/work",
+  "remoteUser": "root",              // or "root" if your image doesn't create a user
+  "postCreateCommand": "bash .devcontainer/post-create.sh || true",
+  "mounts": [
+    "source=${localWorkspaceFolder},target=/work,type=bind"
+  ],
+  "forwardPorts": [3000, 8000],        // add what you need
+  "features": {},                      // optional: ghcr.io/devcontainers/features
+  "containerEnv": {
+    "ENV": "dev"
+  },
+  "runArgs": [
+    // "--gpus","all"                  // uncomment for CUDA/GPU
+  ],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-azuretools.vscode-docker",
+        "ms-python.python",
+        "ms-vscode.cpptools",
+        "ms-vscode.cmake-tools"
+      ]
+    }
+  }
+}
